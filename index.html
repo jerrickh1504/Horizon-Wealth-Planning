@@ -1,0 +1,2167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Horizon Wealth Planning — Plan Today. Prosper Tomorrow.</title>
+<meta name="description" content="Horizon Wealth Planning delivers personalised retirement, investment and insurance advice for families and business owners.">
+<meta name="theme-color" content="#0B2545">
+
+<!-- Google Fonts: Playfair Display (headings) + Inter (body) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================================
+   1. DESIGN TOKENS (CSS custom properties)
+   ========================================================================== */
+:root{
+  /* Brand palette */
+  --navy-900:#081B33;
+  --navy:#0B2545;
+  --navy-700:#123459;
+  --navy-500:#1D4674;
+  --gold:#C9A227;
+  --gold-300:#E3C65C;
+  --bg:#F7F9FC;
+  --surface:#FFFFFF;
+  --text:#111F2E;
+  --muted:#55677A;
+  --line:#DFE7F1;
+  --danger:#C0392B;
+  --ok:#12715A;
+
+  /* Spacing scale */
+  --sp-1:.25rem;
+  --sp-2:.5rem;
+  --sp-3:.75rem;
+  --sp-4:1rem;
+  --sp-5:1.5rem;
+  --sp-6:2rem;
+  --sp-7:3rem;
+  --sp-8:4rem;
+  --sp-9:6rem;
+
+  /* Layout */
+  --nav-h:72px;
+  --maxw:1160px;
+  --radius:16px;
+  --radius-sm:10px;
+  --radius-pill:999px;
+
+  /* Elevation */
+  --shadow-sm:0 1px 2px rgba(11,37,69,.06), 0 2px 10px rgba(11,37,69,.05);
+  --shadow-md:0 12px 32px rgba(11,37,69,.10);
+  --shadow-lg:0 26px 64px rgba(11,37,69,.18);
+
+  /* Type */
+  --ff-head:"Playfair Display", Georgia, "Times New Roman", serif;
+  --ff-body:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Motion */
+  --ease:cubic-bezier(.4,0,.2,1);
+  --tr:.3s var(--ease);
+}
+
+/* ==========================================================================
+   2. BASE / RESET
+   ========================================================================== */
+*,*::before,*::after{box-sizing:border-box}
+
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:calc(var(--nav-h) + 16px);
+  -webkit-text-size-adjust:100%;
+}
+
+body{
+  margin:0;
+  font-family:var(--ff-body);
+  font-size:1rem;
+  line-height:1.65;
+  color:var(--text);
+  background:var(--bg);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+body.nav-open{overflow:hidden}
+
+img,svg{max-width:100%}
+img{display:block;height:auto}
+
+h1,h2,h3,h4{
+  font-family:var(--ff-head);
+  color:var(--navy);
+  line-height:1.15;
+  letter-spacing:-.01em;
+  margin:0 0 var(--sp-3);
+  font-weight:600;
+}
+
+p{margin:0 0 var(--sp-4)}
+p:last-child{margin-bottom:0}
+
+a{color:inherit}
+
+button{font:inherit}
+
+ul{margin:0;padding:0;list-style:none}
+
+:focus-visible{
+  outline:2px solid var(--gold);
+  outline-offset:3px;
+  border-radius:4px;
+}
+
+[hidden]{display:none !important}
+
+/* Utilities ---------------------------------------------------------------- */
+.container{
+  width:100%;
+  max-width:var(--maxw);
+  margin-inline:auto;
+  padding-inline:clamp(1.15rem, 4vw, 2rem);
+}
+
+.section{padding-block:clamp(3.5rem, 8vw, 6rem)}
+
+.section__head{
+  max-width:680px;
+  margin:0 auto clamp(2rem, 5vw, 3rem);
+  text-align:center;
+}
+
+.section__title{font-size:clamp(1.85rem, 4.2vw, 2.7rem)}
+.section__intro{color:var(--muted);font-size:1.03rem;margin-top:var(--sp-3)}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:.6rem;
+  margin:0 0 var(--sp-3);
+  font-size:.74rem;
+  font-weight:600;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--navy-500);
+}
+.eyebrow::before{
+  content:"";
+  width:26px;
+  height:2px;
+  border-radius:2px;
+  background:var(--gold);
+}
+
+.visually-hidden{
+  position:absolute !important;
+  width:1px;height:1px;
+  padding:0;margin:-1px;
+  overflow:hidden;
+  clip:rect(0 0 0 0);
+  white-space:nowrap;
+  border:0;
+}
+
+.skip-link{
+  position:absolute;
+  top:-100px;
+  left:1rem;
+  z-index:200;
+  padding:.7rem 1.2rem;
+  background:var(--gold);
+  color:#20180A;
+  font-weight:600;
+  text-decoration:none;
+  border-radius:0 0 10px 10px;
+  transition:top .2s var(--ease);
+}
+.skip-link:focus{top:0}
+
+/* Buttons ------------------------------------------------------------------ */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.55rem;
+  min-height:48px;
+  padding:.85rem 1.65rem;
+  border:1.5px solid transparent;
+  border-radius:var(--radius-pill);
+  font-size:.95rem;
+  font-weight:600;
+  letter-spacing:.01em;
+  text-decoration:none;
+  cursor:pointer;
+  transition:transform var(--tr), box-shadow var(--tr), background var(--tr), color var(--tr), border-color var(--tr);
+}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+
+.btn--gold{
+  background:linear-gradient(135deg, var(--gold-300), var(--gold));
+  color:#241C00;
+  box-shadow:0 8px 20px rgba(201,162,39,.28);
+}
+.btn--gold:hover{box-shadow:0 14px 30px rgba(201,162,39,.4)}
+
+.btn--outline{
+  border-color:rgba(255,255,255,.55);
+  background:rgba(255,255,255,.05);
+  color:#fff;
+}
+.btn--outline:hover{border-color:#fff;background:rgba(255,255,255,.14)}
+
+.btn--navy{background:var(--navy);color:#fff;box-shadow:var(--shadow-sm)}
+.btn--navy:hover{background:var(--navy-700);box-shadow:var(--shadow-md)}
+
+/* ==========================================================================
+   3. STICKY HEADER + NAVIGATION
+   ========================================================================== */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:80;
+  background:rgba(11,37,69,.9);
+  -webkit-backdrop-filter:blur(14px);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.09);
+  transition:background var(--tr), box-shadow var(--tr);
+}
+.site-header.is-scrolled{
+  background:rgba(8,27,51,.98);
+  box-shadow:0 10px 28px rgba(8,27,51,.32);
+}
+
+.header__inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:var(--sp-4);
+  min-height:var(--nav-h);
+}
+
+/* Logo */
+.logo{
+  display:inline-flex;
+  align-items:center;
+  gap:.7rem;
+  color:#fff;
+  text-decoration:none;
+}
+.logo__mark{
+  display:grid;
+  place-items:center;
+  width:40px;height:40px;
+  border-radius:3px 13px 3px 13px;
+  background:linear-gradient(140deg, var(--gold-300), var(--gold));
+  color:var(--navy);
+  font-family:var(--ff-head);
+  font-size:1.2rem;
+  font-weight:700;
+  flex:0 0 auto;
+  transition:transform var(--tr);
+}
+.logo:hover .logo__mark{transform:rotate(-5deg)}
+.logo__text{display:flex;flex-direction:column;line-height:1.1}
+.logo__name{font-family:var(--ff-head);font-size:1.08rem;letter-spacing:.02em}
+.logo__sub{
+  margin-top:.2rem;
+  font-size:.56rem;
+  font-weight:600;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--gold-300);
+}
+
+/* Navigation (mobile: collapsible panel) */
+.nav{
+  position:absolute;
+  top:100%;
+  left:0;
+  right:0;
+  max-height:0;
+  overflow:hidden;
+  visibility:hidden;
+  background:var(--navy-700);
+  border-bottom:1px solid rgba(255,255,255,.1);
+  transition:max-height .38s var(--ease), visibility .38s;
+}
+.nav.is-open{max-height:340px;visibility:visible}
+
+.nav__list{
+  display:flex;
+  flex-direction:column;
+  gap:.15rem;
+  padding:var(--sp-4) clamp(1.15rem,4vw,2rem) var(--sp-5);
+}
+
+.nav__link{
+  position:relative;
+  display:inline-block;
+  padding:.65rem 0;
+  font-size:.95rem;
+  font-weight:500;
+  color:rgba(255,255,255,.85);
+  text-decoration:none;
+  transition:color var(--tr);
+}
+.nav__link::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:.3rem;
+  width:100%;
+  height:2px;
+  border-radius:2px;
+  background:var(--gold);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform var(--tr);
+}
+.nav__link:hover,
+.nav__link:focus-visible{color:#fff}
+.nav__link:hover::after,
+.nav__link:focus-visible::after{transform:scaleX(1)}
+
+/* Hamburger */
+.nav-toggle{
+  display:grid;
+  place-items:center;
+  width:46px;height:46px;
+  padding:0;
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:12px;
+  background:rgba(255,255,255,.05);
+  color:#fff;
+  cursor:pointer;
+  transition:background var(--tr), border-color var(--tr);
+}
+.nav-toggle:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.45)}
+
+.nav-toggle__bars{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  width:20px;height:14px;
+}
+.nav-toggle__bars span{
+  display:block;
+  height:2px;
+  border-radius:2px;
+  background:currentColor;
+  transition:transform var(--tr), opacity var(--tr);
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+/* ==========================================================================
+   4. HERO
+   ========================================================================== */
+.hero{
+  position:relative;
+  display:flex;
+  align-items:center;
+  min-height:calc(100vh - var(--nav-h));
+  min-height:calc(100svh - var(--nav-h));
+  padding-block:clamp(3rem, 9vw, 6rem);
+  color:#fff;
+  background-color:var(--navy);
+  background-image:
+    linear-gradient(112deg, rgba(8,27,51,.96) 0%, rgba(11,37,69,.9) 44%, rgba(11,37,69,.55) 100%),
+    url("https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1920&q=80");
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+
+.hero__inner{max-width:820px}
+
+.hero .eyebrow{color:var(--gold-300)}
+.hero .eyebrow::before{background:var(--gold-300)}
+
+.hero__title{
+  font-size:clamp(2.3rem, 6.2vw, 4.15rem);
+  line-height:1.06;
+  color:#fff;
+  margin-bottom:var(--sp-4);
+}
+.hero__title em{
+  font-style:normal;
+  color:var(--gold-300);
+}
+
+.hero__sub{
+  max-width:56ch;
+  font-size:clamp(1rem, 2.1vw, 1.16rem);
+  color:rgba(255,255,255,.82);
+}
+
+.hero__actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.8rem;
+  margin-top:var(--sp-6);
+}
+
+/* Trust stats */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0,1fr));
+  gap:var(--sp-3);
+  margin-top:clamp(2.25rem, 6vw, 3.5rem);
+  padding-top:clamp(1.5rem, 4vw, 2.25rem);
+  border-top:1px solid rgba(255,255,255,.2);
+}
+
+.stat__value{
+  display:flex;
+  align-items:baseline;
+  gap:.05em;
+  margin:0;
+  font-family:var(--ff-head);
+  font-size:clamp(1.5rem, 4.4vw, 2.35rem);
+  font-weight:700;
+  line-height:1;
+  color:#fff;
+  font-variant-numeric:tabular-nums;
+}
+.stat__prefix,
+.stat__suffix{color:var(--gold-300)}
+
+.stat__label{
+  margin:.5rem 0 0;
+  font-size:clamp(.72rem, 1.9vw, .86rem);
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.7);
+  line-height:1.35;
+}
+
+/* Hero entrance animation */
+@media (prefers-reduced-motion: no-preference){
+  .hero__inner > *{animation:riseIn .85s var(--ease) both}
+  .hero__inner > :nth-child(2){animation-delay:.08s}
+  .hero__inner > :nth-child(3){animation-delay:.16s}
+  .hero__inner > :nth-child(4){animation-delay:.24s}
+  .hero__inner > :nth-child(5){animation-delay:.32s}
+}
+@keyframes riseIn{
+  from{opacity:0;transform:translateY(22px)}
+  to{opacity:1;transform:none}
+}
+
+/* ==========================================================================
+   5. SCROLL REVEAL
+   ========================================================================== */
+.reveal{
+  opacity:0;
+  transform:translateY(26px);
+  transition:opacity .75s var(--ease), transform .75s var(--ease);
+}
+.reveal.in{opacity:1;transform:none}
+
+/* ==========================================================================
+   6. TESTIMONIALS CAROUSEL
+   ========================================================================== */
+.testimonials{background:var(--surface)}
+
+.carousel{position:relative}
+
+.carousel__viewport{
+  overflow:hidden;
+  padding-block:.65rem;
+  margin-block:-.65rem;
+}
+
+.carousel__track{
+  display:flex;
+  align-items:stretch;
+  gap:var(--sp-5);
+  transition:transform .6s var(--ease);
+  will-change:transform;
+}
+.carousel__track.is-instant{transition:none}
+
+/* Individual testimonial card */
+.t-card{
+  flex:0 0 100%;
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  gap:var(--sp-4);
+  padding:clamp(1.35rem, 3vw, 1.9rem);
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-sm);
+  transition:box-shadow var(--tr), border-color var(--tr);
+}
+.t-card:hover{
+  box-shadow:var(--shadow-md);
+  border-color:#C9D6E6;
+}
+
+.t-card__stars{
+  display:flex;
+  gap:3px;
+  color:var(--gold);
+}
+.t-card__stars svg{width:16px;height:16px;fill:currentColor}
+
+.t-card__quote{
+  margin:0;
+  flex:1 1 auto;
+  font-size:1rem;
+  color:var(--muted);
+}
+.t-card__quote p{margin:0}
+.t-card__quote::before{
+  content:"\201C";
+  display:block;
+  font-family:var(--ff-head);
+  font-size:2.6rem;
+  line-height:.6;
+  color:var(--gold);
+  margin-bottom:.35rem;
+}
+
+.t-card__person{
+  display:flex;
+  align-items:center;
+  gap:.85rem;
+  padding-top:var(--sp-4);
+  border-top:1px solid var(--line);
+}
+.t-card__avatar{
+  width:52px;height:52px;
+  border-radius:50%;
+  object-fit:cover;
+  flex:0 0 auto;
+  background:var(--line);
+  border:2px solid #fff;
+  box-shadow:0 0 0 1px var(--line);
+}
+.t-card__name{
+  margin:0;
+  font-weight:600;
+  color:var(--navy);
+  font-size:.98rem;
+}
+.t-card__role{
+  margin:.1rem 0 0;
+  font-size:.82rem;
+  color:var(--muted);
+}
+
+/* Controls */
+.carousel__controls{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:var(--sp-4);
+  margin-top:var(--sp-6);
+}
+
+.carousel__btn{
+  display:grid;
+  place-items:center;
+  width:46px;height:46px;
+  border:1px solid var(--line);
+  border-radius:50%;
+  background:#fff;
+  color:var(--navy);
+  cursor:pointer;
+  transition:background var(--tr), color var(--tr), border-color var(--tr), transform var(--tr);
+}
+.carousel__btn:hover{
+  background:var(--navy);
+  border-color:var(--navy);
+  color:#fff;
+  transform:translateY(-2px);
+}
+
+.carousel__dots{
+  display:flex;
+  align-items:center;
+  gap:.35rem;
+}
+.dot{
+  display:grid;
+  place-items:center;
+  width:28px;height:28px;
+  padding:0;
+  border:0;
+  background:transparent;
+  cursor:pointer;
+}
+.dot::after{
+  content:"";
+  width:9px;height:9px;
+  border-radius:var(--radius-pill);
+  background:#C2D0E0;
+  transition:background var(--tr), width var(--tr);
+}
+.dot:hover::after{background:var(--navy-500)}
+.dot[aria-current="true"]::after{background:var(--gold);width:24px}
+
+/* ==========================================================================
+   7. CONTACT / ENQUIRY FORM
+   ========================================================================== */
+.contact{background:var(--bg)}
+
+.contact__grid{
+  display:grid;
+  gap:clamp(2rem, 5vw, 3rem);
+  align-items:start;
+}
+
+.contact__lead{
+  color:var(--muted);
+  margin-bottom:var(--sp-6);
+}
+
+/* Contact details list */
+.contact-list{display:grid;gap:var(--sp-5)}
+
+.contact-item{
+  display:flex;
+  gap:var(--sp-4);
+  align-items:flex-start;
+}
+.contact-item__icon{
+  display:grid;
+  place-items:center;
+  width:44px;height:44px;
+  flex:0 0 auto;
+  border-radius:12px;
+  background:var(--navy);
+  color:var(--gold-300);
+}
+.contact-item__icon svg{width:20px;height:20px}
+
+.contact-item__label{
+  margin:0 0 .15rem;
+  font-size:.74rem;
+  font-weight:600;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--navy-500);
+}
+.contact-item__value{
+  margin:0;
+  font-style:normal;
+  font-size:.95rem;
+  color:var(--text);
+  line-height:1.6;
+}
+.contact-item__value a{
+  color:var(--navy);
+  text-decoration:none;
+  border-bottom:1px solid rgba(11,37,69,.22);
+  transition:color var(--tr), border-color var(--tr);
+}
+.contact-item__value a:hover{color:var(--gold);border-color:var(--gold)}
+
+/* Form card */
+.form-card{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:clamp(1.35rem, 4vw, 2.5rem);
+  box-shadow:var(--shadow-md);
+}
+
+form{display:block}
+
+.form__row{display:grid;gap:var(--sp-4);margin-bottom:var(--sp-4)}
+
+.field{min-width:0}
+.field--full{grid-column:1 / -1}
+
+.label,
+legend.label{
+  display:block;
+  margin-bottom:.4rem;
+  padding:0;
+  font-size:.83rem;
+  font-weight:600;
+  letter-spacing:.02em;
+  color:var(--navy);
+}
+.req{color:var(--gold);font-weight:700}
+
+.field input[type="text"],
+.field input[type="email"],
+.field input[type="tel"],
+.field select,
+.field textarea{
+  width:100%;
+  padding:.8rem .95rem;
+  font-family:inherit;
+  font-size:.95rem;
+  line-height:1.4;
+  color:var(--text);
+  background-color:#fff;
+  border:1.5px solid var(--line);
+  border-radius:var(--radius-sm);
+  transition:border-color var(--tr), box-shadow var(--tr), background var(--tr);
+}
+.field textarea{
+  min-height:124px;
+  resize:vertical;
+}
+.field input::placeholder,
+.field textarea::placeholder{color:#95A5B6}
+
+.field :is(input,select,textarea):focus{
+  outline:none;
+  border-color:var(--navy);
+  box-shadow:0 0 0 4px rgba(11,37,69,.1);
+}
+
+.field select{
+  appearance:none;
+  -webkit-appearance:none;
+  padding-right:2.6rem;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%230B2545' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 1rem center;
+  cursor:pointer;
+}
+
+fieldset.field{
+  margin:0 0 var(--sp-4);
+  padding:0;
+  border:0;
+  min-width:0;
+}
+
+/* Radio chips */
+.radio-group{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.55rem;
+}
+.chip{position:relative;display:inline-flex}
+.chip input{
+  position:absolute;
+  width:1px;height:1px;
+  opacity:0;
+  margin:0;
+}
+.chip span{
+  display:inline-flex;
+  align-items:center;
+  padding:.55rem 1.05rem;
+  font-size:.88rem;
+  font-weight:500;
+  color:var(--muted);
+  background:#fff;
+  border:1.5px solid var(--line);
+  border-radius:var(--radius-pill);
+  cursor:pointer;
+  transition:background var(--tr), color var(--tr), border-color var(--tr);
+}
+.chip span:hover{border-color:var(--navy-500);color:var(--navy)}
+.chip input:checked + span{
+  background:var(--navy);
+  border-color:var(--navy);
+  color:#fff;
+  font-weight:600;
+}
+.chip input:focus-visible + span{
+  outline:2px solid var(--gold);
+  outline-offset:2px;
+}
+
+/* Consent */
+.consent{
+  display:flex;
+  align-items:flex-start;
+  gap:.65rem;
+  font-size:.87rem;
+  color:var(--muted);
+  cursor:pointer;
+}
+.consent input[type="checkbox"]{
+  width:18px;height:18px;
+  margin:.2rem 0 0;
+  flex:0 0 auto;
+  accent-color:var(--navy);
+  cursor:pointer;
+}
+
+/* Inline validation */
+.error{
+  display:none;
+  margin:.35rem 0 0;
+  font-size:.79rem;
+  font-weight:500;
+  color:var(--danger);
+}
+.field.has-error .error{display:block}
+
+.field.has-error :is(input[type="text"],input[type="email"],input[type="tel"],select,textarea){
+  border-color:var(--danger);
+  background-color:#FFF7F6;
+}
+.field.has-error :is(input[type="text"],input[type="email"],input[type="tel"],select,textarea):focus{
+  box-shadow:0 0 0 4px rgba(192,57,43,.12);
+}
+.field.has-error .chip span{border-color:rgba(192,57,43,.55)}
+.field.has-error .consent input{outline:2px solid rgba(192,57,43,.5);outline-offset:2px}
+
+/* Submit button + spinner */
+.btn--submit{
+  width:100%;
+  margin-top:var(--sp-2);
+  position:relative;
+}
+.btn--submit .btn__label{transition:opacity .2s var(--ease)}
+.btn__spinner{
+  position:absolute;
+  top:50%;left:50%;
+  width:19px;height:19px;
+  margin:-9.5px 0 0 -9.5px;
+  border:2.5px solid rgba(0,0,0,.18);
+  border-top-color:currentColor;
+  border-radius:50%;
+  display:none;
+  animation:spin .7s linear infinite;
+}
+.btn--submit.is-loading{pointer-events:none;opacity:.9}
+.btn--submit.is-loading .btn__label{opacity:0}
+.btn--submit.is-loading .btn__spinner{display:block}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Success state */
+.form-success{
+  text-align:center;
+  padding:clamp(1.5rem, 5vw, 2.5rem) .5rem;
+}
+.form-success__icon{
+  display:grid;
+  place-items:center;
+  width:72px;height:72px;
+  margin:0 auto var(--sp-4);
+  border-radius:50%;
+  background:rgba(18,113,90,.1);
+  color:var(--ok);
+}
+.form-success__icon svg{width:34px;height:34px}
+.form-success h3{font-size:clamp(1.4rem, 3.4vw, 1.85rem);margin-bottom:var(--sp-3)}
+.form-success p{color:var(--muted);max-width:42ch;margin-inline:auto}
+.form-success .btn{margin-top:var(--sp-5)}
+
+/* ==========================================================================
+   8. FOOTER
+   ========================================================================== */
+.site-footer{
+  position:relative;
+  background:var(--navy);
+  color:rgba(255,255,255,.72);
+  padding-top:clamp(3rem, 6vw, 4.5rem);
+  overflow:hidden;
+}
+.site-footer::before{
+  content:"";
+  position:absolute;
+  inset:0 0 auto 0;
+  height:3px;
+  background:linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity:.7;
+}
+
+.footer__grid{
+  display:grid;
+  gap:clamp(2rem, 5vw, 2.75rem);
+  padding-bottom:clamp(2rem, 5vw, 3rem);
+}
+
+.footer__title{
+  margin:0 0 var(--sp-4);
+  font-family:var(--ff-body);
+  font-size:.76rem;
+  font-weight:700;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:#fff;
+}
+
+.footer__about{
+  margin-top:var(--sp-4);
+  font-size:.9rem;
+  color:rgba(255,255,255,.68);
+  max-width:38ch;
+}
+
+.footer__links li + li{margin-top:.1rem}
+.footer__links a{
+  display:inline-block;
+  padding:.3rem 0;
+  font-size:.9rem;
+  color:rgba(255,255,255,.72);
+  text-decoration:none;
+  transition:color var(--tr), transform var(--tr);
+}
+.footer__links a:hover{
+  color:var(--gold-300);
+  transform:translateX(4px);
+}
+
+.newsletter{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:var(--sp-1)}
+.newsletter input{
+  flex:1 1 170px;
+  min-width:0;
+  padding:.75rem .9rem;
+  font-family:inherit;
+  font-size:.9rem;
+  color:#fff;
+  background:rgba(255,255,255,.07);
+  border:1.5px solid rgba(255,255,255,.18);
+  border-radius:var(--radius-sm);
+  transition:border-color var(--tr), background var(--tr);
+}
+.newsletter input::placeholder{color:rgba(255,255,255,.45)}
+.newsletter input:focus{
+  outline:none;
+  background:rgba(255,255,255,.12);
+  border-color:var(--gold);
+}
+.newsletter input[aria-invalid="true"]{border-color:#F08A7C}
+.newsletter .btn{
+  min-height:44px;
+  padding:.7rem 1.25rem;
+  font-size:.88rem;
+}
+
+.newsletter__note{
+  margin:.6rem 0 0;
+  font-size:.78rem;
+  color:rgba(255,255,255,.5);
+  min-height:1.2em;
+}
+.newsletter__note.is-error{color:#F08A7C}
+
+.social{
+  display:flex;
+  gap:.55rem;
+  margin-top:var(--sp-5);
+}
+.social a{
+  display:grid;
+  place-items:center;
+  width:38px;height:38px;
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:50%;
+  color:rgba(255,255,255,.8);
+  transition:background var(--tr), color var(--tr), border-color var(--tr), transform var(--tr);
+}
+.social a:hover{
+  background:var(--gold);
+  border-color:var(--gold);
+  color:var(--navy);
+  transform:translateY(-3px);
+}
+.social svg{width:17px;height:17px}
+
+.footer__bottom{
+  padding-block:var(--sp-5);
+  border-top:1px solid rgba(255,255,255,.12);
+  display:flex;
+  flex-direction:column;
+  gap:var(--sp-2);
+  font-size:.82rem;
+  color:rgba(255,255,255,.55);
+}
+.footer__bottom p{margin:0}
+.footer__disclaimer{max-width:62ch}
+
+/* ==========================================================================
+   9. BACK TO TOP
+   ========================================================================== */
+.to-top{
+  position:fixed;
+  right:clamp(1rem, 3vw, 2rem);
+  bottom:clamp(1rem, 3vw, 2rem);
+  z-index:90;
+  display:grid;
+  place-items:center;
+  width:48px;height:48px;
+  border:0;
+  border-radius:50%;
+  background:var(--gold);
+  color:#241C00;
+  cursor:pointer;
+  box-shadow:var(--shadow-md);
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(14px);
+  transition:opacity var(--tr), transform var(--tr), visibility var(--tr), background var(--tr);
+}
+.to-top:hover{background:var(--gold-300)}
+.to-top.is-visible{opacity:1;visibility:visible;transform:none}
+.to-top svg{width:20px;height:20px}
+
+/* ==========================================================================
+   10. BREAKPOINTS — 768px (tablet) and 1024px (desktop)
+   ========================================================================== */
+@media (min-width:768px){
+  /* Navigation becomes horizontal */
+  .nav{
+    position:static;
+    max-height:none;
+    overflow:visible;
+    visibility:visible;
+    background:transparent;
+    border:0;
+    transform:none;
+  }
+  .nav__list{
+    flex-direction:row;
+    align-items:center;
+    gap:var(--sp-6);
+    padding:0;
+  }
+  .nav__link{font-size:.92rem}
+  .nav-toggle{display:none}
+
+  /* Carousel: 2 cards */
+  .t-card{flex-basis:calc((100% - var(--sp-5)) / 2)}
+
+  /* Form: 2 columns */
+  .form__row--2{grid-template-columns:1fr 1fr}
+
+  /* Footer: 2 columns */
+  .footer__grid{grid-template-columns:repeat(2, minmax(0,1fr))}
+  .footer__bottom{
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+    gap:var(--sp-5);
+  }
+}
+
+@media (min-width:1024px){
+  /* Carousel: 3 cards */
+  .t-card{flex-basis:calc((100% - (2 * var(--sp-5))) / 3)}
+
+  /* Contact: contact info + form side by side */
+  .contact__grid{
+    grid-template-columns:minmax(0, .82fr) minmax(0, 1.18fr);
+    gap:clamp(2.5rem, 5vw, 4rem);
+  }
+  .contact__aside{
+    position:sticky;
+    top:calc(var(--nav-h) + 2rem);
+  }
+
+  /* Footer: 4 columns */
+  .footer__grid{
+    grid-template-columns:1.5fr .8fr .95fr 1.15fr;
+    gap:var(--sp-6);
+  }
+}
+
+/* ==========================================================================
+   11. REDUCED MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,
+  *::before,
+  *::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<!-- ==========================================================================
+     HEADER / STICKY NAVIGATION
+     ========================================================================== -->
+<header class="site-header" id="siteHeader">
+  <div class="container header__inner">
+    <a class="logo" href="#home" aria-label="Horizon Wealth Planning — go to home">
+      <span class="logo__mark" aria-hidden="true">H</span>
+      <span class="logo__text">
+        <span class="logo__name">Horizon</span>
+        <span class="logo__sub">Wealth Planning</span>
+      </span>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" type="button"
+            aria-expanded="false" aria-controls="primaryNav" aria-label="Open menu">
+      <span class="nav-toggle__bars" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </span>
+    </button>
+
+    <nav class="nav" id="primaryNav" aria-label="Primary">
+      <ul class="nav__list">
+        <li><a class="nav__link" href="#home">Home</a></li>
+        <li><a class="nav__link" href="#testimonials">Testimonials</a></li>
+        <li><a class="nav__link" href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ========================================================================
+       1. HERO
+       ======================================================================== -->
+  <section class="hero" id="home" aria-labelledby="heroTitle">
+    <div class="container">
+      <div class="hero__inner">
+        <p class="eyebrow">Independent Financial Advice</p>
+
+        <h1 class="hero__title" id="heroTitle">
+          Plan Today.<br><em>Prosper Tomorrow.</em>
+        </h1>
+
+        <p class="hero__sub">
+          Personalised retirement, investment and insurance strategies built around your life —
+          so every decision you make today has a clear purpose tomorrow.
+        </p>
+
+        <div class="hero__actions">
+          <a class="btn btn--gold" href="#contact">Book a Free Consultation</a>
+          <a class="btn btn--outline" href="#testimonials">Learn More</a>
+        </div>
+
+        <!-- Trust statistics (numbers counted up by JS) -->
+        <ul class="stats" aria-label="Firm credentials">
+          <li class="stat">
+            <p class="stat__value" aria-hidden="true">
+              <span class="stat__num" data-target="15">0</span><span class="stat__suffix">+</span>
+            </p>
+            <p class="stat__label">Years of Experience</p>
+            <span class="visually-hidden">More than 15 years of experience</span>
+          </li>
+          <li class="stat">
+            <p class="stat__value" aria-hidden="true">
+              <span class="stat__num" data-target="1200">0</span><span class="stat__suffix">+</span>
+            </p>
+            <p class="stat__label">Clients Advised</p>
+            <span class="visually-hidden">More than 1,200 clients advised</span>
+          </li>
+          <li class="stat">
+            <p class="stat__value" aria-hidden="true">
+              <span class="stat__prefix">$</span><span class="stat__num" data-target="500">0</span><span class="stat__suffix">M</span>
+            </p>
+            <p class="stat__label">Assets Advised</p>
+            <span class="visually-hidden">500 million dollars in assets advised</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       2. TESTIMONIALS CAROUSEL
+       ======================================================================== -->
+  <section class="testimonials section" id="testimonials" aria-labelledby="testimonialsTitle">
+    <div class="container">
+      <div class="section__head reveal">
+        <p class="eyebrow">Client Stories</p>
+        <h2 class="section__title" id="testimonialsTitle">What Our Clients Say</h2>
+        <p class="section__intro">
+          Long-term relationships built on clear advice, honest conversations and results our
+          clients can measure.
+        </p>
+      </div>
+
+      <div class="carousel" id="testimonialsCarousel"
+           role="region" aria-roledescription="carousel" aria-label="Client testimonials">
+
+        <div class="carousel__viewport" id="carouselViewport" aria-live="off">
+          <div class="carousel__track" id="carouselTrack">
+
+            <!-- Testimonial 1 -->
+            <article class="t-card" role="group" aria-roledescription="slide" aria-label="Testimonial 1">
+              <div class="t-card__stars" role="img" aria-label="Rated 5 out of 5">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>
+              </div>
+              <blockquote class="t-card__quote">
+                <p>Horizon mapped out a retirement plan that finally made sense of forty years of
+                superannuation statements. For the first time I know exactly where I stand and
+                when I can stop working.</p>
+              </blockquote>
+              <div class="t-card__person">
+                <img class="t-card__avatar" width="52" height="52" loading="lazy"
+                     src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&crop=faces&w=160&h=160&q=80"
+                     alt="Portrait of Margaret Chen">
+                <div>
+                  <p class="t-card__name">Margaret Chen</p>
+                  <p class="t-card__role">Retired Teacher</p>
+                </div>
+              </div>
+            </article>
+
+            <!-- Testimonial 2 -->
+            <article class="t-card" role="group" aria-roledescription="slide" aria-label="Testimonial 2">
+              <div class="t-card__stars" role="img" aria-label="Rated 5 out of 5">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>
+              </div>
+              <blockquote class="t-card__quote">
+                <p>They reviewed our insurance and investments in a single sitting and found two
+                policies we were paying for twice. That conversation alone paid for their fee
+                several times over.</p>
+              </blockquote>
+              <div class="t-card__person">
+                <img class="t-card__avatar" width="52" height="52" loading="lazy"
+                     src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&crop=faces&w=160&h=160&q=80"
+                     alt="Portrait of David Okafor">
+                <div>
+                  <p class="t-card__name">David Okafor</p>
+                  <p class="t-card__role">Small Business Owner</p>
+                </div>
+              </div>
+            </article>
+
+            <!-- Testimonial 3 -->
+            <article class="t-card" role="group" aria-roledescription="slide" aria-label="Testimonial 3">
+              <div class="t-card__stars" role="img" aria-label="Rated 5 out of 5">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>
+              </div>
+              <blockquote class="t-card__quote">
+                <p>I inherited a portfolio and had absolutely no idea where to start. Nothing was
+                ever rushed, and every option was explained in plain English. I finally feel
+                confident about the decisions I'm making.</p>
+              </blockquote>
+              <div class="t-card__person">
+                <img class="t-card__avatar" width="52" height="52" loading="lazy"
+                     src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&crop=faces&w=160&h=160&q=80"
+                     alt="Portrait of Priya Raman">
+                <div>
+                  <p class="t-card__name">Priya Raman</p>
+                  <p class="t-card__role">Architect</p>
+                </div>
+              </div>
+            </article>
+
+            <!-- Testimonial 4 -->
+            <article class="t-card" role="group" aria-roledescription="slide" aria-label="Testimonial 4">
+              <div class="t-card__stars" role="img" aria-label="Rated 5 out of 5">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>
+              </div>
+              <blockquote class="t-card__quote">
+                <p>Our annual reviews keep us accountable and on track. Four years in, we're ahead
+                of the plan we set at the very first meeting — and we actually understand why.</p>
+              </blockquote>
+              <div class="t-card__person">
+                <img class="t-card__avatar" width="52" height="52" loading="lazy"
+                     src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&crop=faces&w=160&h=160&q=80"
+                     alt="Portrait of James Whitmore">
+                <div>
+                  <p class="t-card__name">James Whitmore</p>
+                  <p class="t-card__role">Emergency Physician</p>
+                </div>
+              </div>
+            </article>
+
+            <!-- Testimonial 5 -->
+            <article class="t-card" role="group" aria-roledescription="slide" aria-label="Testimonial 5">
+              <div class="t-card__stars" role="img" aria-label="Rated 5 out of 5">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>
+              </div>
+              <blockquote class="t-card__quote">
+                <p>I wanted to buy my first home without derailing my long-term investing. They
+                built a plan that did both, and they still reply to my emails within a day.</p>
+              </blockquote>
+              <div class="t-card__person">
+                <img class="t-card__avatar" width="52" height="52" loading="lazy"
+                     src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&crop=faces&w=160&h=160&q=80"
+                     alt="Portrait of Sofia Marchetti">
+                <div>
+                  <p class="t-card__name">Sofia Marchetti</p>
+                  <p class="t-card__role">Software Engineer</p>
+                </div>
+              </div>
+            </article>
+
+          </div><!-- /.carousel__track -->
+        </div><!-- /.carousel__viewport -->
+
+        <div class="carousel__controls">
+          <button class="carousel__btn" id="carouselPrev" type="button" aria-label="Previous testimonials">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+          </button>
+
+          <div class="carousel__dots" id="carouselDots" role="group" aria-label="Testimonial pagination"></div>
+
+          <button class="carousel__btn" id="carouselNext" type="button" aria-label="Next testimonials">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 6l6 6-6 6"/>
+            </svg>
+          </button>
+        </div>
+
+        <p class="visually-hidden" id="carouselStatus" role="status" aria-live="polite"></p>
+      </div><!-- /.carousel -->
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       3. ENQUIRY FORM
+       ======================================================================== -->
+  <section class="contact section" id="contact" aria-labelledby="contactTitle">
+    <div class="container">
+      <div class="section__head reveal">
+        <p class="eyebrow">Get In Touch</p>
+        <h2 class="section__title" id="contactTitle">Start Your Financial Journey</h2>
+        <p class="section__intro">
+          Tell us a little about what you're working towards. Your first consultation is free,
+          unhurried and completely confidential.
+        </p>
+      </div>
+
+      <div class="contact__grid">
+
+        <!-- Contact information -->
+        <div class="contact__aside reveal">
+          <h3>Speak with an adviser</h3>
+          <p class="contact__lead">
+            Whether you're five years from retirement or just starting out, a short conversation
+            is usually all it takes to see where you stand.
+          </p>
+
+          <ul class="contact-list">
+            <li class="contact-item">
+              <span class="contact-item__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                     stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 21s7-5.4 7-11a7 7 0 10-14 0c0 5.6 7 11 7 11z"/>
+                  <circle cx="12" cy="10" r="2.6"/>
+                </svg>
+              </span>
+              <div>
+                <p class="contact-item__label">Visit Us</p>
+                <address class="contact-item__value">
+                  42 Kingsway Tower, Level 12<br>Melbourne VIC 3000, Australia
+                </address>
+              </div>
+            </li>
+
+            <li class="contact-item">
+              <span class="contact-item__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                     stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6.6 3.6h2.2l1.6 4-2 1.3a12 12 0 005.7 5.7l1.3-2 4 1.6v2.2a2.1 2.1 0 01-2.3 2.1A16.5 16.5 0 014.5 5.9a2.1 2.1 0 012.1-2.3z"/>
+                </svg>
+              </span>
+              <div>
+                <p class="contact-item__label">Call Us</p>
+                <p class="contact-item__value"><a href="tel:+61390004820">+61 3 9000 4820</a></p>
+              </div>
+            </li>
+
+            <li class="contact-item">
+              <span class="contact-item__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                     stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="5.5" width="18" height="13" rx="2.5"/>
+                  <path d="M4 7l8 6 8-6"/>
+                </svg>
+              </span>
+              <div>
+                <p class="contact-item__label">Email Us</p>
+                <p class="contact-item__value">
+                  <a href="mailto:hello@horizonwealth.com.au">hello@horizonwealth.com.au</a>
+                </p>
+              </div>
+            </li>
+
+            <li class="contact-item">
+              <span class="contact-item__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                     stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="8.5"/>
+                  <path d="M12 7.5V12l3.2 2"/>
+                </svg>
+              </span>
+              <div>
+                <p class="contact-item__label">Office Hours</p>
+                <p class="contact-item__value">
+                  Monday – Friday: 8:30am – 6:00pm<br>Saturday: 9:00am – 1:00pm
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Enquiry form -->
+        <div class="form-card reveal">
+          <form id="enquiryForm" novalidate>
+            <div class="form__row form__row--2">
+              <div class="field" data-field="fullName">
+                <label class="label" for="fullName">Full Name <span class="req" aria-hidden="true">*</span></label>
+                <input type="text" id="fullName" name="fullName" autocomplete="name"
+                       placeholder="Jane Wilson" aria-describedby="err-fullName">
+                <p class="error" id="err-fullName" role="alert"></p>
+              </div>
+
+              <div class="field" data-field="email">
+                <label class="label" for="email">Email Address <span class="req" aria-hidden="true">*</span></label>
+                <input type="email" id="email" name="email" autocomplete="email"
+                       placeholder="jane@example.com" aria-describedby="err-email">
+                <p class="error" id="err-email" role="alert"></p>
+              </div>
+            </div>
+
+            <div class="form__row form__row--2">
+              <div class="field" data-field="phone">
+                <label class="label" for="phone">Phone Number <span class="req" aria-hidden="true">*</span></label>
+                <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="numeric"
+                       placeholder="0400 123 456" aria-describedby="err-phone">
+                <p class="error" id="err-phone" role="alert"></p>
+              </div>
+
+              <div class="field" data-field="ageRange">
+                <label class="label" for="ageRange">Age Range <span class="req" aria-hidden="true">*</span></label>
+                <select id="ageRange" name="ageRange" aria-describedby="err-ageRange">
+                  <option value="">Please select…</option>
+                  <option value="Under 25">Under 25</option>
+                  <option value="25–34">25 – 34</option>
+                  <option value="35–44">35 – 44</option>
+                  <option value="45–54">45 – 54</option>
+                  <option value="55–64">55 – 64</option>
+                  <option value="65+">65+</option>
+                </select>
+                <p class="error" id="err-ageRange" role="alert"></p>
+              </div>
+            </div>
+
+            <div class="form__row">
+              <div class="field" data-field="interest">
+                <label class="label" for="interest">Area of Interest <span class="req" aria-hidden="true">*</span></label>
+                <select id="interest" name="interest" aria-describedby="err-interest">
+                  <option value="">Please select…</option>
+                  <option value="Retirement Planning">Retirement Planning</option>
+                  <option value="Investment">Investment</option>
+                  <option value="Insurance">Insurance</option>
+                  <option value="Estate Planning">Estate Planning</option>
+                  <option value="Tax Planning">Tax Planning</option>
+                </select>
+                <p class="error" id="err-interest" role="alert"></p>
+              </div>
+            </div>
+
+            <fieldset class="field" data-field="contactMethod">
+              <legend class="label">Preferred Contact Method <span class="req" aria-hidden="true">*</span></legend>
+              <div class="radio-group">
+                <label class="chip">
+                  <input type="radio" name="contactMethod" value="Email" checked>
+                  <span>Email</span>
+                </label>
+                <label class="chip">
+                  <input type="radio" name="contactMethod" value="Phone">
+                  <span>Phone</span>
+                </label>
+                <label class="chip">
+                  <input type="radio" name="contactMethod" value="WhatsApp">
+                  <span>WhatsApp</span>
+                </label>
+              </div>
+              <p class="error" id="err-contactMethod" role="alert"></p>
+            </fieldset>
+
+            <div class="form__row">
+              <div class="field" data-field="message">
+                <label class="label" for="message">How can we help? <span class="req" aria-hidden="true">*</span></label>
+                <textarea id="message" name="message"
+                          placeholder="Tell us a little about your goals, current situation or questions…"
+                          aria-describedby="err-message"></textarea>
+                <p class="error" id="err-message" role="alert"></p>
+              </div>
+            </div>
+
+            <div class="form__row">
+              <div class="field" data-field="consent">
+                <label class="consent" for="consent">
+                  <input type="checkbox" id="consent" name="consent" aria-describedby="err-consent">
+                  <span>I agree to be contacted by Horizon Wealth Planning about my enquiry and
+                  accept the privacy policy.</span>
+                </label>
+                <p class="error" id="err-consent" role="alert"></p>
+              </div>
+            </div>
+
+            <button class="btn btn--gold btn--submit" id="submitBtn" type="submit">
+              <span class="btn__label">Send My Enquiry</span>
+              <span class="btn__spinner" aria-hidden="true"></span>
+            </button>
+
+            <p class="visually-hidden" id="formStatus" role="status" aria-live="polite"></p>
+          </form>
+
+          <!-- Success message (revealed after a valid submission) -->
+          <div class="form-success" id="formSuccess" tabindex="-1" hidden>
+            <div class="form-success__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4.5 12.5l4.5 4.5L19.5 6.5"/>
+              </svg>
+            </div>
+            <h3>Thank you, <span id="successName">friend</span>!</h3>
+            <p>
+              Your enquiry has been received. One of our advisers will be in touch within one
+              business day to arrange your free consultation.
+            </p>
+            <button class="btn btn--navy" id="resetForm" type="button">Send another enquiry</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ==========================================================================
+     FOOTER
+     ========================================================================== -->
+<footer class="site-footer" aria-labelledby="footerHeading">
+  <h2 class="visually-hidden" id="footerHeading">Site footer</h2>
+
+  <div class="container">
+    <div class="footer__grid">
+
+      <!-- Column 1: brand -->
+      <div>
+        <a class="logo" href="#home" aria-label="Horizon Wealth Planning — go to home">
+          <span class="logo__mark" aria-hidden="true">H</span>
+          <span class="logo__text">
+            <span class="logo__name">Horizon</span>
+            <span class="logo__sub">Wealth Planning</span>
+          </span>
+        </a>
+        <p class="footer__about">
+          Independent financial advice built on clarity, discipline and a long-term view.
+          We help Australian families and business owners make confident decisions about money.
+        </p>
+
+        <!-- Social icons (inline SVGs) -->
+        <div class="social">
+          <a href="#" aria-label="Horizon Wealth Planning on Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M13.6 21v-7.2h2.5l.4-2.9h-2.9V9c0-.84.24-1.42 1.45-1.42h1.55V5.02c-.27-.04-1.2-.12-2.28-.12-2.25 0-3.8 1.37-3.8 3.9v2.1H8v2.9h2.5V21h3.1z"/>
+            </svg>
+          </a>
+          <a href="#" aria-label="Horizon Wealth Planning on LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M6.94 8.5H4.5V19h2.44V8.5zM5.72 7.3a1.42 1.42 0 100-2.84 1.42 1.42 0 000 2.84zM19.5 19h-2.44v-5.5c0-1.38-.5-2.2-1.63-2.2-.9 0-1.42.6-1.66 1.2-.08.2-.1.48-.1.77V19H11.2s.03-9.4 0-10.5h2.44v1.48c.32-.5 1.02-1.35 2.5-1.35 1.8 0 3.36 1.2 3.36 3.8V19z"/>
+            </svg>
+          </a>
+          <a href="#" aria-label="Horizon Wealth Planning on Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+              <rect x="3.6" y="3.6" width="16.8" height="16.8" rx="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.2" cy="6.9" r="1.1" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          <a href="#" aria-label="Horizon Wealth Planning on X">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.5 3h3.1l-6.8 7.8L21.9 21h-6.2l-4.6-6-5.3 6H2.7l7.3-8.3L2.4 3h6.3l4.2 5.6L17.5 3zm-1.1 16.1h1.7L7.1 4.8H5.3l11.1 14.3z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Column 2: quick links -->
+      <nav aria-label="Footer quick links">
+        <h3 class="footer__title">Quick Links</h3>
+        <ul class="footer__links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#contact">Book a Consultation</a></li>
+        </ul>
+      </nav>
+
+      <!-- Column 3: services -->
+      <div>
+        <h3 class="footer__title">Services</h3>
+        <ul class="footer__links">
+          <li><a href="#contact">Retirement Planning</a></li>
+          <li><a href="#contact">Investment Management</a></li>
+          <li><a href="#contact">Insurance Solutions</a></li>
+          <li><a href="#contact">Estate Planning</a></li>
+          <li><a href="#contact">Tax Planning</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: newsletter -->
+      <div>
+        <h3 class="footer__title">Newsletter</h3>
+        <p class="footer__about" style="margin-top:0">
+          Quarterly market insights and practical planning tips. No noise, ever.
+        </p>
+        <form class="newsletter" id="newsletterForm" novalidate>
+          <label class="visually-hidden" for="newsEmail">Your email address</label>
+          <input type="email" id="newsEmail" name="newsEmail" placeholder="Your email address"
+                 autocomplete="email" aria-describedby="newsletterStatus">
+          <button class="btn btn--gold" type="submit">Subscribe</button>
+        </form>
+        <p class="newsletter__note" id="newsletterStatus" role="status" aria-live="polite">
+          We never share your email.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer__bottom">
+      <p>&copy; <span id="year">2026</span> Horizon Wealth Planning. All rights reserved.</p>
+      <p class="footer__disclaimer">
+        This website is for informational purposes only and does not constitute financial advice.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to top -->
+<button class="to-top" id="toTop" type="button" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M12 19V5M5 12l7-7 7 7"/>
+  </svg>
+</button>
+
+<script>
+/* ==========================================================================
+   HORIZON WEALTH PLANNING — SITE SCRIPTS
+   1. Utilities        2. Footer year       3. Header + back to top
+   4. Mobile navigation 5. Reveal + counters 6. Testimonial carousel
+   7. Enquiry form     8. Newsletter
+   ========================================================================== */
+(function () {
+  'use strict';
+
+  /* ------------------------------------------------------------------------
+     1. Utilities
+     ------------------------------------------------------------------------ */
+  const $  = (selector, context = document) => context.querySelector(selector);
+  const $$ = (selector, context = document) => Array.from(context.querySelectorAll(selector));
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ------------------------------------------------------------------------
+     2. Footer year
+     ------------------------------------------------------------------------ */
+  const yearEl = $('#year');
+  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+  /* ------------------------------------------------------------------------
+     3. Sticky header state + back-to-top button
+     ------------------------------------------------------------------------ */
+  const header = $('#siteHeader');
+  const toTop  = $('#toTop');
+
+  function onScroll() {
+    const y = window.scrollY;
+    header.classList.toggle('is-scrolled', y > 8);
+    toTop.classList.toggle('is-visible', y > 400);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  toTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+  });
+
+  /* ------------------------------------------------------------------------
+     4. Mobile navigation (hamburger)
+     ------------------------------------------------------------------------ */
+  const navToggle = $('#navToggle');
+  const nav = $('#primaryNav');
+
+  function setNav(open) {
+    nav.classList.toggle('is-open', open);
+    navToggle.setAttribute('aria-expanded', String(open));
+    navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    document.body.classList.toggle('nav-open', open);
+  }
+
+  navToggle.addEventListener('click', () => {
+    setNav(navToggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  // Close the menu whenever an in-page link is used
+  $$('.nav__link', nav).forEach((link) => {
+    link.addEventListener('click', () => setNav(false));
+  });
+
+  // Escape closes the menu and returns focus to the toggle
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && nav.classList.contains('is-open')) {
+      setNav(false);
+      navToggle.focus();
+    }
+  });
+
+  // Reset the menu when the viewport grows to desktop width
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768 && nav.classList.contains('is-open')) setNav(false);
+  });
+
+  /* ------------------------------------------------------------------------
+     5. Fade-in on scroll + animated statistic counters
+     ------------------------------------------------------------------------ */
+  function animateCount(el) {
+    const target = parseFloat(el.dataset.target || '0');
+    const finalText = Math.round(target).toLocaleString('en-US');
+
+    if (reduceMotion) {
+      el.textContent = finalText;
+      return;
+    }
+
+    const duration = 1600;
+    const startTime = performance.now();
+
+    function frame(now) {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      el.textContent = Math.round(target * eased).toLocaleString('en-US');
+      if (progress < 1) requestAnimationFrame(frame);
+      else el.textContent = finalText;
+    }
+    requestAnimationFrame(frame);
+  }
+
+  const revealTargets = $$('.reveal');
+  const statsBlock = $('.stats');
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+
+        if (el === statsBlock) {
+          $$('.stat__num', el).forEach(animateCount);
+        }
+        el.classList.add('in');
+        obs.unobserve(el);
+      });
+    }, { threshold: 0.18, rootMargin: '0px 0px -60px 0px' });
+
+    revealTargets.forEach((el) => observer.observe(el));
+    if (statsBlock) observer.observe(statsBlock);
+  } else {
+    // Graceful fallback for very old browsers
+    revealTargets.forEach((el) => el.classList.add('in'));
+    if (statsBlock) {
+      $$('.stat__num', statsBlock).forEach((el) => {
+        el.textContent = Math.round(parseFloat(el.dataset.target || '0')).toLocaleString('en-US');
+      });
+    }
+  }
+
+  /* ------------------------------------------------------------------------
+     6. Testimonial carousel
+        - responsive: 1 card (mobile) / 2 (tablet) / 3 (desktop)
+        - autoplay every 5s, pauses on hover or focus
+        - arrows, dots, keyboard arrows and touch swipe
+     ------------------------------------------------------------------------ */
+  const carousel   = $('#testimonialsCarousel');
+  const viewport   = $('#carouselViewport');
+  const track      = $('#carouselTrack');
+  const slides     = $$('.t-card', track);
+  const prevBtn    = $('#carouselPrev');
+  const nextBtn    = $('#carouselNext');
+  const dotsWrap   = $('#carouselDots');
+  const liveStatus = $('#carouselStatus');
+  const AUTOPLAY_MS = 5000;
+
+  let perView = 1;
+  let index = 0;
+  let autoplayId = null;
+  let pausedByUser = false;
+
+  const getPerView = () => (window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1);
+  const lastIndex  = () => Math.max(0, slides.length - perView);
+  const gapSize    = () => parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || '0') || 0;
+
+  /* Position the track so `index` is the first visible card */
+  function render(instant) {
+    if (!slides.length) return;
+    const cardWidth = slides[0].getBoundingClientRect().width;
+
+    if (instant) track.classList.add('is-instant');
+    track.style.transform = 'translate3d(' + (-index * (cardWidth + gapSize())) + 'px, 0, 0)';
+    if (instant) {
+      requestAnimationFrame(() => requestAnimationFrame(() => track.classList.remove('is-instant')));
+    }
+    syncDots();
+  }
+
+  function buildDots() {
+    dotsWrap.innerHTML = '';
+    for (let i = 0; i <= lastIndex(); i += 1) {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'dot';
+      dot.setAttribute('aria-label',
+        'Show testimonials ' + (i + 1) + ' to ' + Math.min(i + perView, slides.length));
+      dot.addEventListener('click', () => {
+        goTo(i);
+        restartAutoplay();
+      });
+      dotsWrap.appendChild(dot);
+    }
+  }
+
+  function syncDots() {
+    $$('.dot', dotsWrap).forEach((dot, i) => {
+      if (i === index) dot.setAttribute('aria-current', 'true');
+      else dot.removeAttribute('aria-current');
+    });
+  }
+
+  function goTo(target, announce) {
+    index = Math.max(0, Math.min(target, lastIndex()));
+    render(false);
+    if (announce && liveStatus) {
+      liveStatus.textContent = 'Showing testimonial group ' + (index + 1) + ' of ' + (lastIndex() + 1);
+    }
+  }
+
+  const nextSlide = () => goTo(index >= lastIndex() ? 0 : index + 1, false);
+  const prevSlide = () => goTo(index <= 0 ? lastIndex() : index - 1, false);
+
+  function startAutoplay() {
+    stopAutoplay();
+    if (reduceMotion || pausedByUser) return;
+    autoplayId = window.setInterval(nextSlide, AUTOPLAY_MS);
+  }
+  function stopAutoplay() {
+    if (autoplayId) {
+      window.clearInterval(autoplayId);
+      autoplayId = null;
+    }
+  }
+  function restartAutoplay() {
+    stopAutoplay();
+    startAutoplay();
+  }
+
+  // Pause while the pointer or keyboard focus is inside the carousel
+  carousel.addEventListener('mouseenter', () => { pausedByUser = true; stopAutoplay(); });
+  carousel.addEventListener('mouseleave', () => { pausedByUser = false; startAutoplay(); });
+  carousel.addEventListener('focusin',    () => { pausedByUser = true; stopAutoplay(); });
+  carousel.addEventListener('focusout',   () => { pausedByUser = false; startAutoplay(); });
+
+  prevBtn.addEventListener('click', () => { prevSlide(); restartAutoplay(); });
+  nextBtn.addEventListener('click', () => { nextSlide(); restartAutoplay(); });
+
+  // Keyboard navigation
+  carousel.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowLeft')  { event.preventDefault(); prevSlide(); restartAutoplay(); }
+    if (event.key === 'ArrowRight') { event.preventDefault(); nextSlide(); restartAutoplay(); }
+  });
+
+  // Touch swipe support
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let isSwiping = false;
+
+  viewport.addEventListener('touchstart', (event) => {
+    const touch = event.touches[0];
+    touchStartX = touch.clientX;
+    touchStartY = touch.clientY;
+    isSwiping = true;
+    stopAutoplay();
+  }, { passive: true });
+
+  viewport.addEventListener('touchend', (event) => {
+    if (!isSwiping) return;
+    isSwiping = false;
+    const touch = event.changedTouches[0];
+    const dx = touch.clientX - touchStartX;
+    const dy = touch.clientY - touchStartY;
+
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+      if (dx < 0) nextSlide();
+      else prevSlide();
+    }
+    startAutoplay();
+  }, { passive: true });
+
+  // Recalculate layout when the breakpoint changes or the window resizes
+  let resizeTimer = null;
+  function layoutCarousel() {
+    const nextPerView = getPerView();
+    if (nextPerView !== perView) {
+      perView = nextPerView;
+      index = Math.min(index, lastIndex());
+      buildDots();
+      render(true);
+    } else {
+      render(false);
+    }
+  }
+
+  perView = getPerView();
+  buildDots();
+  render(true);
+  startAutoplay();
+
+  window.addEventListener('resize', () => {
+    window.clearTimeout(resizeTimer);
+    resizeTimer = window.setTimeout(layoutCarousel, 120);
+  });
+  window.addEventListener('load', () => render(false));
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stopAutoplay();
+    else startAutoplay();
+  });
+
+  /* ------------------------------------------------------------------------
+     7. Enquiry form — validation, loading state and success message
+     ------------------------------------------------------------------------ */
+  const form        = $('#enquiryForm');
+  const submitBtn   = $('#submitBtn');
+  const formStatus  = $('#formStatus');
+  const successBox  = $('#formSuccess');
+  const successName = $('#successName');
+  const resetBtn    = $('#resetForm');
+
+  const fields = {
+    fullName: $('#fullName'),
+    email: $('#email'),
+    phone: $('#phone'),
+    ageRange: $('#ageRange'),
+    interest: $('#interest'),
+    message: $('#message'),
+    consent: $('#consent')
+  };
+
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/;
+  const PHONE_RE = /^\d{8,15}$/;
+
+  /* Each validator returns an error string, or '' when the field is valid */
+  const validators = {
+    fullName() {
+      const value = fields.fullName.value.trim();
+      if (!value) return 'Please enter your full name.';
+      if (value.length < 2) return 'Your name must be at least 2 characters.';
+      return '';
+    },
+    email() {
+      const value = fields.email.value.trim();
+      if (!value) return 'Please enter your email address.';
+      if (!EMAIL_RE.test(value)) return 'Enter a valid email, e.g. name@example.com.';
+      return '';
+    },
+    phone() {
+      const value = fields.phone.value.trim();
+      if (!value) return 'Please enter your phone number.';
+      if (!PHONE_RE.test(value)) return 'Phone must be 8–15 digits, numbers only.';
+      return '';
+    },
+    ageRange() {
+      return fields.ageRange.value ? '' : 'Please select your age range.';
+    },
+    interest() {
+      return fields.interest.value ? '' : 'Please choose an area of interest.';
+    },
+    contactMethod() {
+      return form.querySelector('input[name="contactMethod"]:checked')
+        ? '' : 'Please choose how you would like to be contacted.';
+    },
+    message() {
+      const value = fields.message.value.trim();
+      if (!value) return 'Please tell us how we can help.';
+      if (value.length < 10) return 'Please add a little more detail (at least 10 characters).';
+      return '';
+    },
+    consent() {
+      return fields.consent.checked ? '' : 'Please tick the box so we have permission to contact you.';
+    }
+  };
+
+  const fieldOrder = Object.keys(validators);
+
+  function fieldWrap(name) {
+    return form.querySelector('[data-field="' + name + '"]');
+  }
+
+  function setError(name, message) {
+    const wrap = fieldWrap(name);
+    const errorEl = $('#err-' + name);
+    if (wrap) wrap.classList.add('has-error');
+    if (errorEl) errorEl.textContent = message;
+    if (wrap) {
+      $$('input, select, textarea', wrap).forEach((control) => {
+        control.setAttribute('aria-invalid', 'true');
+      });
+    }
+  }
+
+  function clearError(name) {
+    const wrap = fieldWrap(name);
+    const errorEl = $('#err-' + name);
+    if (wrap) wrap.classList.remove('has-error');
+    if (errorEl) errorEl.textContent = '';
+    if (wrap) {
+      $$('input, select, textarea', wrap).forEach((control) => {
+        control.removeAttribute('aria-invalid');
+      });
+    }
+  }
+
+  // Clear an error as soon as the user fixes the field
+  ['input', 'change'].forEach((eventName) => {
+    form.addEventListener(eventName, (event) => {
+      const wrap = event.target.closest('[data-field]');
+      if (!wrap || !wrap.classList.contains('has-error')) return;
+      const name = wrap.dataset.field;
+      if (validators[name] && !validators[name]()) clearError(name);
+    });
+  });
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const invalidFields = [];
+    fieldOrder.forEach((name) => {
+      const message = validators[name]();
+      if (message) {
+        setError(name, message);
+        invalidFields.push(name);
+      } else {
+        clearError(name);
+      }
+    });
+
+    if (invalidFields.length) {
+      const firstWrap = fieldWrap(invalidFields[0]);
+      const firstControl = firstWrap && firstWrap.querySelector('input, select, textarea');
+      if (firstControl) firstControl.focus();
+      formStatus.textContent = 'Please correct ' + invalidFields.length +
+        ' field' + (invalidFields.length > 1 ? 's' : '') + ' before submitting.';
+      return;
+    }
+
+    // Valid — collect the data
+    const payload = {
+      fullName: fields.fullName.value.trim(),
+      email: fields.email.value.trim(),
+      phone: fields.phone.value.trim(),
+      ageRange: fields.ageRange.value,
+      areaOfInterest: fields.interest.value,
+      preferredContactMethod: form.querySelector('input[name="contactMethod"]:checked').value,
+      message: fields.message.value.trim(),
+      consent: fields.consent.checked,
+      submittedAt: new Date().toISOString()
+    };
+
+    // Log the enquiry as a JSON object
+    console.log('Horizon Wealth Planning — enquiry received:\n' + JSON.stringify(payload, null, 2));
+
+    // Loading state
+    submitBtn.disabled = true;
+    submitBtn.classList.add('is-loading');
+    submitBtn.setAttribute('aria-busy', 'true');
+    formStatus.textContent = 'Sending your enquiry…';
+
+    // Simulated network delay, then show the success panel
+    window.setTimeout(() => {
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('is-loading');
+      submitBtn.removeAttribute('aria-busy');
+
+      form.hidden = true;
+      successName.textContent = payload.fullName;
+      successBox.hidden = false;
+      successBox.focus();
+
+      formStatus.textContent = 'Enquiry sent successfully.';
+      form.reset();
+      fieldOrder.forEach(clearError);
+    }, 1500);
+  });
+
+  // Allow the visitor to send another enquiry
+  resetBtn.addEventListener('click', () => {
+    successBox.hidden = true;
+    form.hidden = false;
+    form.reset();
+    fieldOrder.forEach(clearError);
+    formStatus.textContent = '';
+    fields.fullName.focus();
+  });
+
+  /* ------------------------------------------------------------------------
+     8. Newsletter signup
+     ------------------------------------------------------------------------ */
+  const newsForm  = $('#newsletterForm');
+  const newsEmail = $('#newsEmail');
+  const newsNote  = $('#newsletterStatus');
+
+  newsForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const value = newsEmail.value.trim();
+
+    if (!EMAIL_RE.test(value)) {
+      newsEmail.setAttribute('aria-invalid', 'true');
+      newsNote.classList.add('is-error');
+      newsNote.textContent = 'Please enter a valid email address.';
+      newsEmail.focus();
+      return;
+    }
+
+    newsEmail.removeAttribute('aria-invalid');
+    newsNote.classList.remove('is-error');
+    newsNote.textContent = 'Thank you — ' + value + ' is now subscribed.';
+    newsForm.reset();
+  });
+
+  newsEmail.addEventListener('input', () => {
+    if (newsNote.classList.contains('is-error')) {
+      newsNote.classList.remove('is-error');
+      newsNote.textContent = 'We never share your email.';
+      newsEmail.removeAttribute('aria-invalid');
+    }
+  });
+})();
+</script>
+</body>
+</html>
